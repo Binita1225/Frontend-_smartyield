@@ -1,0 +1,39 @@
+.results-page {
+    --progress-value: 0; /* Scoped custom property */
+  }
+  
+  .results-page .progress-bar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation-play-state: paused;
+  }
+  
+  .results-page .progress-bar::before {
+    counter-reset: percentage var(--progress-value);
+    content: counter(percentage) '%';
+  }
+  
+  .results-page .html {
+    background: radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(hotpink calc(var(--progress-value) * 1%), pink 0);
+    animation: html-progress 2s 1 forwards;
+  }
+  
+  .results-page .css {
+    background: radial-gradient(closest-side, white 79%, transparent 80% 100%, white 0), conic-gradient(hotpink calc(var(--progress-value) * 1%), pink 0);
+    animation: css-progress 2s 1 forwards;
+  }
+  
+  .results-page .js {
+    background: radial-gradient(closest-side, white 79%, transparent 80% 100%, white 0), conic-gradient(hotpink calc(var(--progress-value) * 1%), pink 0);
+    animation: js-progress 2s 1 forwards;
+  }
+  
+  .results-page .progress-bar-container {
+    margin: 20px;
+    text-align: center;
+  }
+  
