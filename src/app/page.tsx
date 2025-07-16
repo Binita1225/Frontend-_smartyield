@@ -2,7 +2,7 @@ import Research from "@/components/Research";
 import Aboutus from "@/components/UI/Aboutus";
 import CustomDataImplementatino from "@/components/UI/CustomDataImplementatino";
 import HeroBanner from "@/components/UI/HeroBanner";
-import OurTeam from "@/components/UI/OurTeam";
+// import OurTeam from "@/components/UI/OurTeam";
 import { Tabs } from "@/components/UI/tabs";
 import ViaSearch from "@/components/UI/ViaSearch";
 import { Montserrat } from "next/font/google";
@@ -40,7 +40,7 @@ const page = () => {
           tabClassName="text-sm font-medium"
         />
       </div>
-      <OurTeam />
+      {/* <OurTeam /> */}
       <Research />
     </>
   );

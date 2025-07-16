@@ -152,19 +152,13 @@ const Results = ({ response }: ResultsProps) => {
               </td>
             </tr>
             <tr className="border border-[#000] ">
-              <td className="border border-[#000] p-2 text-left">
-                {" "}
-                Relative Humidity
-              </td>
+              <td className="border border-[#000] p-2 text-left"> Relative Humidity</td>
               <td className="border border-[#000] p-2">
                 {response.inputData.relativeHumidity}
               </td>
             </tr>
             <tr className="border border-[#000] ">
-              <td className="border border-[#000] p-2 text-left">
-                {" "}
-                Soil Temprature
-              </td>
+              <td className="border border-[#000] p-2 text-left"> Soil Temprature</td>
               <td className="border border-[#000] p-2">
                 {response.inputData.soilTemp}
               </td>
@@ -200,9 +194,7 @@ const Results = ({ response }: ResultsProps) => {
               </td>
             </tr>
             <tr className="border border-[#000] ">
-              <td className="border border-[#000] p-2 text-left">
-                Production Area
-              </td>
+              <td className="border border-[#000] p-2 text-left">Production Area</td>
               <td className="border border-[#000] p-2">
                 {response.inputData.productionArea}
               </td>
