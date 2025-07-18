@@ -5,6 +5,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import Link from "next/link";
 import PrimaryButton from "../UI/PrimaryButton";
 import { useRouter } from "next/navigation";
+import { jwtDecode } from "jwt-decode";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,25 +26,49 @@ const Navbar: React.FC = () => {
     const offset = window.scrollY;
     setScrolled(offset > 100);
   };
+
+  type DecodedToken = {
+    "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"?: string;
+    "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"?: string;
+    "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"?: string;
+    "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"?: string;
+    exp?: number;
+    iss?: string;
+    aud?: string;
+  };
+
   useEffect(() => {
-    localStorage.getItem("token");
-    setToken(localStorage.getItem("token"));
-    console.log(token);
+    const storedToken = localStorage.getItem("token");
+    setToken(storedToken);
     window.addEventListener("scroll", handleScroll);
-    const storedUserData = localStorage.getItem("userData");
-    if (storedUserData) {
+
+    if (storedToken) {
       try {
-        setUserData(JSON.parse(storedUserData));
+        const decodedToken: DecodedToken = jwtDecode(storedToken);
+
+        const user = {
+          name: decodedToken[
+            "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
+          ],
+          email:
+            decodedToken[
+              "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
+            ],
+          role:
+            decodedToken[
+              "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+            ] || "",
+        };
+        setUserData(user);
       } catch {
         setUserData(null);
       }
     }
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  console.log(token, "ajhdkasghd");
+  console.log(userData, "asdhjaskjdhasd");
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
