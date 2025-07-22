@@ -76,9 +76,9 @@ const LoginPage = () => {
     <div className="min-h-screen flex items-center justify-center bg-[#F2ECDB] bg-cover ">
       <div className="w-[900px] bg-[url('/login-bg.svg')] bg-no-repeat bg-contain h-[50vh]">
         <div className="w-[400px] mx-auto bg-white p-10 rounded-md">
-          {/* <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center">
             <Logo />
-          </div> */}
+          </div>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700">

@@ -13,7 +13,7 @@ const Research = () => {
                 `,
       content: (
         <div className="h-full w-full text-white text-[20px] text-center flex justify-center items-center">
-            <img src="/logo.png" className="w-full h-full" />  
+          <img src="/logo.png" className="w-full h-full" />
         </div>
       ),
     },
@@ -104,7 +104,7 @@ const Research = () => {
                 `,
       content: (
         <div className="h-full w-full text-white text-[20px] text-center flex justify-center items-center">
-         <img src="/data-7.jpg" className="w-full h-full bg-cover" />
+          <img src="/data-7.jpg" className="w-full h-full bg-cover" />
         </div>
       ),
     },
