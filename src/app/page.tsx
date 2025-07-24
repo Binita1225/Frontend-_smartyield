@@ -1,10 +1,10 @@
 import Research from "@/components/Research";
 import Aboutus from "@/components/UI/Aboutus";
 import CustomDataImplementatino from "@/components/UI/CustomDataImplementatino";
+import DiseaseDetection from "@/components/UI/DiseaseDetection";
 import HeroBanner from "@/components/UI/HeroBanner";
 // import OurTeam from "@/components/UI/OurTeam";
 import { Tabs } from "@/components/UI/tabs";
-import ViaSearch from "@/components/UI/ViaSearch";
 import { Montserrat } from "next/font/google";
 import React from "react";
 const montserrat = Montserrat({ subsets: ["latin"] });
@@ -12,9 +12,9 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 const page = () => {
   const tabsData = [
     {
-      title: "Via Search",
-      value: "via-search",
-      content: <ViaSearch />,
+      title: "Disease Detection",
+      value: "disease-detection",
+      content: <DiseaseDetection />,
     },
     {
       title: "Custom Data Implementation",
