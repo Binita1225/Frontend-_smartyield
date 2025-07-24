@@ -17,10 +17,10 @@ const navLinks = [
     name: "Contact",
     href: "/contact",
   },
-  {
-    name: "Guide",
-    href: "/guide",
-  },
+  // {
+  //   name: "Guide",
+  //   href: "/guide",
+  // },
   {
     name: "Research",
     href: "/research",
@@ -61,7 +61,7 @@ const Footer = () => {
         </div>
       </footer>
       <div className="bg-[#A77523] py-5 text-white text-center">
-        &copy; 2024 Wheat Yield Prediction. All rights reserved.
+        &copy; 2025 SmartYield. All rights reserved.
       </div>
     </>
   );

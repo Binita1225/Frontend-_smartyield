@@ -6,8 +6,8 @@ import { Montserrat } from "next/font/google";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 interface DiseaseDetectionResponse {
-  Disease: string;
-  Treatment: string;
+  disease: string;
+  treatment: string;
 }
 
 const DiseaseDetection = () => {
@@ -68,68 +68,71 @@ const DiseaseDetection = () => {
   };
 
   return (
-    <section className={`bg-white ${montserrat.className}`}>
-      <div className="container mx-auto px-4 py-8">
-        <h3 className="text-[40px] font-semibold mb-4 text-center text-[#4C6F35]">
+    <section className={`bg-[#f7f4ec] min-h-screen ${montserrat.className}`}>
+      <div className="max-w-6xl mx-auto px-6 py-4">
+        <h1 className="text-4xl md:text-5xl font-bold text-center text-[#000000] mb-10">
           Wheat Disease Detection
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="relative flex justify-center items-center">
+        </h1>
+
+        <div className="grid md:grid-cols-2 gap-10 items-start">
+          {/* Left: Image preview */}
+          <div className="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center">
+            <h2 className="text-lg font-medium mb-4 text-[#000000]">
+              Uploaded Image
+            </h2>
             {preview ? (
               <img
                 src={preview}
-                alt="Uploaded Preview"
-                className="max-w-[500px] rounded-lg shadow-md"
+                alt="Preview"
+                className="w-full max-w-[400px] h-auto rounded-lg border border-gray-300"
               />
             ) : (
-              <div className="flex items-center justify-center w-[500px] h-[300px] bg-gray-100 rounded-lg">
-                <p className="text-gray-500">Image Preview</p>
-              </div>
+              <img
+                src="wheatdefault.webp"
+                alt="Default Wheat"
+                className="w-full max-w-[400px] h-auto rounded-lg border border-dashed border-gray-300 bg-gray-50"
+              />
             )}
           </div>
-          <div>
-            <h4 className="text-[18px] font-semibold mb-4 text-[#4C6F35]">
-              Upload an Image to Detect Wheat Diseases
-            </h4>
+
+          {/* Right: Upload + Results */}
+          <div className="bg-white p-6 rounded-xl shadow-lg">
+            <h2 className="text-lg font-medium mb-4 text-[#050505]">
+              Upload an image to detect diseases
+            </h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <input
                 type="file"
                 accept="image/*"
                 onChange={handleFileChange}
-                className="block w-full text-sm text-gray-500
-                  file:mr-4 file:py-2 file:px-4
-                  file:rounded-full file:border-0
-                  file:text-sm file:font-semibold
-                  file:bg-[#4C6F35] file:text-[#F2C200]
-                  hover:file:bg-[#3b5a29]"
+                className="block w-full text-sm text-gray-700 border border-gray-300 rounded-md cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-[#4C6F35] file:text-white hover:file:bg-[#3b5a29]"
               />
+
               <button
                 type="submit"
                 disabled={isLoading}
-                className={`w-full py-2 px-4 rounded-full text-[#F2C200] bg-[#4C6F35] hover:bg-[#3b5a29] transition-colors ${
+                className={`w-full py-3 text-lg font-semibold rounded-full transition-colors text-white bg-[#4C6F35] hover:bg-[#3b5a29] ${
                   isLoading ? "opacity-50 cursor-not-allowed" : ""
                 }`}
               >
-                {isLoading ? "Processing..." : "Detect Disease"}
+                {isLoading ? "Analyzing..." : "Detect Disease"}
               </button>
             </form>
+
             {error && (
-              <div className="mt-4 text-red-600">
-                <p>{error}</p>
-              </div>
+              <p className="mt-4 text-red-600 text-sm text-center">{error}</p>
             )}
+
             {result && (
-              <div className="mt-6 bg-gray-100 p-4 rounded-lg shadow-md">
-                <h4 className="text-lg font-medium text-[#4C6F35]">
+              <div className="mt-6 border-t pt-4">
+                <h3 className="text-xl font-semibold text-[#4C6F35] mb-2">
                   Detection Result
-                </h4>
-                <p className="mt-2">
-                  <span className="font-semibold">Disease:</span>{" "}
-                  {result.Disease}
+                </h3>
+                <p className="text-gray-800">
+                  <strong>Disease:</strong> {result.disease}
                 </p>
-                <p className="mt-2">
-                  <span className="font-semibold">Treatment:</span>{" "}
-                  {result.Treatment}
+                <p className="text-gray-800 mt-1">
+                  <strong>Treatment:</strong> {result.treatment}
                 </p>
               </div>
             )}
