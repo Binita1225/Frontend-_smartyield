@@ -14,13 +14,10 @@ const navLinks = [
     href: "/about",
   },
   {
-    name: "Contact",
-    href: "/contact",
+    name: "How To Use",
+    href: "/howtouse",
   },
-  // {
-  //   name: "Guide",
-  //   href: "/guide",
-  // },
+
   {
     name: "Research",
     href: "/research",

@@ -1,10 +1,12 @@
+"use client";
+
 import CustomDataImplementatino from "@/components/UI/CustomDataImplementatino";
 import HowToUse from "@/components/UI/HowToUse";
 import { Tabs } from "@/components/UI/tabs";
 import ViaSearch from "@/components/UI/ViaSearch";
-
 import { Montserrat } from "next/font/google";
 import React from "react";
+
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 const page = () => {
@@ -20,10 +22,11 @@ const page = () => {
       content: <CustomDataImplementatino />,
     },
   ];
+
   return (
-    <div className="container mx-auto h-[90vh] pt-[130px]" id="howtouse">
+    <div className="container mx-auto pt-[130px] pb-[60px]" id="howtouse">
       <div
-        className={`text-[4rem] tracking-[-1.72px] leading-[4.5rem] text-center font-[600] ${montserrat.className}`}
+        className={`text-[3rem] sm:text-[4rem] tracking-[-1.72px] leading-[4.5rem] text-center font-[600] ${montserrat.className}`}
       >
         How <span className="text-[#F2C200]">To</span>{" "}
         <span className="text-[#4C6F35]">Use</span>

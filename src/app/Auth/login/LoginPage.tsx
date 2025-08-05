@@ -73,8 +73,8 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#F2ECDB] bg-cover ">
-      <div className="w-[900px] bg-[url('/login-bg.svg')] bg-no-repeat bg-contain h-[50vh]">
+    <div className="min-h-screen flex justify-center bg-[#F2ECDB] bg-cover ">
+      <div className="mt-20 w-[900px] bg-[url('/login-bg.svg')] bg-no-repeat bg-contain h-[50vh]">
         <div className="w-[400px] mx-auto bg-white p-10 rounded-md">
           <div className="flex items-center justify-center">
             <Logo />

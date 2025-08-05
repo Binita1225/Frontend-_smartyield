@@ -73,7 +73,7 @@ const Navbar: React.FC = () => {
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "How To Use", href: "/howtouse" },
-    // { name: "Our-team", href: "/our-team" },
+
     { name: "Research", href: "/research" },
   ];
 
@@ -103,19 +103,13 @@ const Navbar: React.FC = () => {
           </Link>
         </div>
         <div className="max-lg:hidden">
-          {userData?.role != "Admin" ? (
-            <>{/* <Link href="/admin/user">Users</Link> */}</>
-          ) : (
-            <>
-              <ul className="flex gap-7">
-                {navLinks.map((navLink, index) => (
-                  <li key={index}>
-                    <Link href={navLink.href}>{navLink.name}</Link>
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
+          <ul className="flex gap-7">
+            {navLinks.map((navLink, index) => (
+              <li key={index}>
+                <Link href={navLink.href}>{navLink.name}</Link>
+              </li>
+            ))}
+          </ul>
         </div>
         <div className="max-lg:hidden">
           {token === null ? (
