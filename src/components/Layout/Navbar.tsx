@@ -73,7 +73,7 @@ const Navbar: React.FC = () => {
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "How To Use", href: "/howtouse" },
-    { name: "Our-team", href: "/our-team" },
+    // { name: "Our-team", href: "/our-team" },
     { name: "Research", href: "/research" },
   ];
 
@@ -104,9 +104,7 @@ const Navbar: React.FC = () => {
         </div>
         <div className="max-lg:hidden">
           {userData?.role != "Admin" ? (
-            <>
-              <Link href="/admin/user">Users</Link>
-            </>
+            <>{/* <Link href="/admin/user">Users</Link> */}</>
           ) : (
             <>
               <ul className="flex gap-7">
