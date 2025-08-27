@@ -14,61 +14,108 @@ import Cookies from "js-cookie";
 // };
 
 const LoginPage = () => {
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+
+  // //   const router = useRouter();
+
+  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+
+  //   const payload = { email, password };
+
+  //   try {
+  //     const response = await axios.post(`${port}/user/login`, payload, {
+  //       headers: { "Content-Type": "application/json" },
+  //     });
+  //     console.log(response.data);
+
+  // localStorage.setItem("token", response.data.accessToken);
+  // localStorage.setItem("userData", JSON.stringify(response.data));
+
+  // Cookies.set("token", response.data.accessToken, {
+  //   expires: 1,
+  //   path: "/",
+  // });
+
+  // const user = {
+  //   id: response.data[
+  //     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+  //   ],
+  //   name: response.data[
+  //     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
+  //   ],
+  //   email:
+  //     response.data[
+  //       "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
+  //     ],
+  //   role: response.data[
+  //     "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+  //   ],
+  // };
+
+  // Cookies.set(
+  //   "userData",
+  //   JSON.stringify({
+  //     email: user.email,
+  //     name: user.name,
+  //     role: user.role,
+  //   }),
+  //   { expires: 1, path: "/" }
+  // );
+
+  // if (user.role === "SuperAdmin" || user.role === "Admin") {
+  //   window.location.href = "/admin";
+  // } else {
+  //   window.location.href = "/";
+  // }
+
+  // } catch (error) {
+  //   console.error("Error during login:", error);
+  // }
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  //   const router = useRouter();
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError("");
+
     const payload = { email, password };
 
     try {
-      const response = await axios.post(`${port}/user/login`, payload, {
-        headers: { "Content-Type": "application/json" },
-      });
-      console.log(response.data);
+      const result = (
+        await axios.post(`${port}/user/login`, payload, {
+          headers: { "Content-Type": "application/json" },
+        })
+      ).data;
 
-      localStorage.setItem("token", response.data.accessToken);
-      localStorage.setItem("userData", JSON.stringify(response.data));
+      // Check if login was successful
+      if (!result.flag) {
+        setError(result.message || "Login failed");
+        return;
+      }
 
-      Cookies.set("token", response.data.accessToken, {
+      // Store token & user info
+      localStorage.setItem("token", result.accessToken);
+      localStorage.setItem("userData", JSON.stringify({ role: result.role }));
+
+      Cookies.set("token", result.accessToken, { expires: 1, path: "/" });
+      Cookies.set("userData", JSON.stringify({ role: result.role }), {
         expires: 1,
         path: "/",
       });
 
-      const user = {
-        id: response.data[
-          "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
-        ],
-        name: response.data[
-          "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
-        ],
-        email:
-          response.data[
-            "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
-          ],
-        role: response.data[
-          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-        ],
-      };
-
-      Cookies.set(
-        "userData",
-        JSON.stringify({
-          email: user.email,
-          name: user.name,
-          role: user.role,
-        }),
-        { expires: 1, path: "/" }
-      );
-
-      if (user.role === "SuperAdmin" || user.role === "Admin") {
+      // Redirect based on role
+      if (result.role === "SuperAdmin" || result.role === "Admin") {
         window.location.href = "/admin";
       } else {
         window.location.href = "/";
       }
-    } catch (error) {
-      console.error("Error during login:", error);
+    } catch (err) {
+      console.error("Login error:", err);
+      setError("Something went wrong. Please try again.");
     }
   };
 

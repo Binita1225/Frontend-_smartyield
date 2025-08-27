@@ -15,6 +15,7 @@ export default function RegisterPage() {
     email: "",
     password: "",
     confirmPassword: "",
+    roleId: 2,
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -34,7 +35,7 @@ export default function RegisterPage() {
       });
 
       console.log(response.data);
-      if (response.data.status === 0) {
+      if (response.data.status === 0 || response.data.status === "Ok") {
         setSuccess("Registration successful. Redirecting to login...");
         setTimeout(() => {
           startTransition(() => {
@@ -52,8 +53,8 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen flex justify-center bg-[#F2ECDB] bg-cover">
-      <div className="mt-10 w-[900px] bg-[url('/login-bg.svg')] bg-no-repeat bg-contain h-[60vh]">
-        <div className="w-[400px] mx-auto bg-white p-10 pt-5 pb-5 rounded-md">
+      <div className="mt-6 w-[900px] bg-[url('/login-bg.svg')] bg-no-repeat bg-contain h-[60vh]">
+        <div className="w-[400px] mx-auto bg-white p-10 pt-2 pb-3 rounded-md">
           <div className="flex items-center justify-center mb-2">
             <Logo />
           </div>
@@ -111,7 +112,7 @@ export default function RegisterPage() {
               />
             </div>
 
-            <div className="mb-6">
+            <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700">
                 Confirm Password
               </label>
@@ -123,6 +124,21 @@ export default function RegisterPage() {
                 required
                 className="mt-1 block w-full p-2 rounded-md border-2 border-gray-300 shadow-sm focus:outline-none focus:border-[#4C6F35] sm:text-sm"
               />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700">
+                Role
+              </label>
+              <select
+                name="roleId"
+                value={formData.roleId}
+                onChange={handleChange}
+                required
+                className="mt-1 block w-full p-2 rounded-md border-2 border-gray-300 shadow-sm focus:outline-none focus:border-[#4C6F35] sm:text-sm"
+              >
+                <option value={2}>Registered User</option>
+                {/* Admin role should not be selectable by normal users */}
+              </select>
             </div>
 
             <div className="w-full">
